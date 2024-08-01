@@ -1,7 +1,0 @@
-\section{Executing Commands in Docker Container}
-Commands are executed within a Docker container on the robot to ensure they run in the correct environment:
-\begin{itemize}
-	\item \textbf{Find Latest Container}: The application checks for the latest running Docker container.
-	\item \textbf{Start Container if Needed}: If no container is running, a new Docker container is started.
-	\item \textbf{Create and Execute Script}: A script is created inside the container, given execution permissions, and then run. This script typically includes sourcing the ROS setup script, navigating to the workspace, sourcing the workspace setup script, and executing the desired command.
-\end{itemize}
