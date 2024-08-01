@@ -1,0 +1,9 @@
+[0] Config.pm:308> INFO - This is Biber 2.20
+[0] Config.pm:311> INFO - Logfile is 'RobotInterfaceManual.blg'
+[165] biber-MSWIN64:340> INFO - === 
+[205] Biber.pm:420> INFO - Reading 'RobotInterfaceManual.bcf'
+[331] Biber.pm:994> INFO - Found 0 citekeys in bib section 0
+[348] bbl.pm:676> INFO - Writing 'RobotInterfaceManual.bbl' with encoding 'UTF-8'
+[348] bbl.pm:779> INFO - Output to RobotInterfaceManual.bbl
+[349] Biber.pm:131> WARN - The file 'RobotInterfaceManual.bcf' does not contain any citations!
+[349] Biber.pm:133> INFO - WARNINGS: 1

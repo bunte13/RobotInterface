@@ -1,0 +1,72 @@
+﻿@model RobotInterface.ViewModels.FileUploadViewModel
+
+@{
+    ViewData["Title"] = "Upload Excel File";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<style>
+    .body {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f8f9fa;
+</style>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="mb-4 text-center">Upload Excel File</h1>
+
+                <form asp-action="Upload" enctype="multipart/form-data" method="post" class="mb-4">
+                    <div class="form-group">
+                        <label for="ExcelFile" class="font-weight-bold">Choose Excel File</label>
+                        <input type="file" class="form-control-file" id="ExcelFile" name="ExcelFile" />
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Upload</button>
+                </form>
+
+                @using (Html.BeginForm("ResetDatabase", "Database", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-danger btn-block"
+                            onclick="return confirm('Are you sure you want to reset the database? This action cannot be undone.');"
+                            data-toggle="tooltip" data-placement="top" title="This will permanently delete all data in the database.">
+                        Reset Database
+                    </button>
+                }
+
+                @if (ViewData.ModelState.Values.SelectMany(v => v.Errors).Any())
+                {
+                    <div class="alert alert-danger mt-4">
+                        <ul class="mb-0">
+                            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                            {
+                                <li>@error.ErrorMessage</li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha384-IQsoLXlE2H1k3FdZsAzQ9hdMRbKRrN0Lt7B6x+Cr6f8gZOzx5dAlK1VRY3Kj0Wly" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+</body>
+</html>

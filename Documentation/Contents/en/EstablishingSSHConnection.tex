@@ -1,0 +1,28 @@
+\section{Establishing an SSH Connection}
+To interact with the robot, the application must establish an SSH connection. The steps involved are:
+\begin{itemize}
+	\item \textbf{Setting the Host}: The user sets the robot's IP address via the web interface.
+	\item \textbf{Connecting to SSH}: The \texttt{SshService} uses the provided IP address, along with predefined username and password, to establish an SSH connection.
+	\item \textbf{Testing the Connection}: A test command is executed to ensure the connection is successful.
+\end{itemize}
+\begin{tikzpicture}[node distance=2.5cm]
+	% User
+	\node[draw, rounded corners, fill=blue!20, align=center] (user) {User};
+	
+	% Web Application
+	\node[draw, rounded corners, fill=green!20, right=2.5cm of user, align=center] (webapp) {Web Application};
+	
+	% SSH Service
+	\node[draw, rounded corners, fill=yellow!20, right=2.5cm of webapp, align=center] (sshservice) {SSH Service};
+	
+	% Robot
+	\node[draw, rounded corners, fill=red!20, right=2.5cm of sshservice, align=center] (robot) {Robot};
+	
+	% Arrows
+	\draw[->] (user) -- node[above, align=center, text width=2cm] {Sets IP Address} (webapp);
+	\draw[->] (webapp) -- node[above, align=center, text width=2cm] {Sends IP Address} (sshservice);
+	\draw[->] (sshservice) -- node[above, align=center, text width=3cm] {Establishes SSH Connection} (robot);
+	\draw[<-] (sshservice) -- node[below, align=center, text width=3cm] {Tests Connection} (robot);
+	\draw[<-] (webapp) -- node[below, align=center, text width=2cm] {Displays Status} (user);
+\end{tikzpicture}
+

@@ -1,0 +1,148 @@
+%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2020-01-18 11:15:45Z $
+% $Pfad: WuSt/Skript/Produktspezifikation/powerpoint/ImageProcessing.tex $
+% $Version: 4620 $
+%
+%%%%%%
+
+\definecolor{MapleColor}{rgb}{1,0.0,0.}
+\definecolor{PythonColor}{rgb}{0,0.5,1.}
+\definecolor{ShellColor}{rgb}{1,0,0.5}
+\definecolor{FileColor}{rgb}{0.5,0.5,1.}
+
+\newcommand{\MapleCommand}[1]{\textcolor{MapleColor}{\texttt{#1}}}
+\newcommand{\PYTHON}[1]{\textcolor{PythonColor}{\texttt{#1}}}
+\newcommand{\SHELL}[1]{#1}%\textcolor{ShellColor}{\texttt{#1}}}
+\newcommand{\FILE}[1]{\textcolor{FileColor}{\texttt{#1}}}
+
+
+\newcommand{\QUELLE}{\textcolor{red}{hier Quelle finden}}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}} % linksbündig mit Breitenangabe
+
+\newcommand{\GRAFIK}{\textcolor{red}{Grafik einfügen}}
+
+\newcommand{\DEF}[1]{\fcolorbox{blue}{blue!10}{\begin{minipage}{\textwidth}\textbf{Definition.}#1\end{minipage}}}
+
+\newcommand{\BEISPIEL}[1]{\fcolorbox{blue}{blue!10}{\begin{minipage}{\textwidth}\textbf{Beispiel.}#1\end{minipage}}}
+
+\newcommand{\SATZ}[1]{\fcolorbox{blue}{blue!10}{\begin{minipage}{\textwidth}\textbf{Satz.}#1\end{minipage}}}
+
+\newcommand{\Bemerkung}[1]{\fcolorbox{blue}{blue!10}{\begin{minipage}{\textwidth}\textbf{Bemerkung.}#1\end{minipage}}}
+
+
+\newcommand{\Po}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+
+\DeclareMathOperator{\Atan2}{Atan2}
+\DeclareMathOperator{\sign}{sign}
+
+% Auswahl der Sprache
+% 1.Argument ist der Pfad ohne "en" oder "de"
+% 2.Argument ist der Dateiname
+\newcommand{\InputLanguage}[2]{
+    \ifdefined\isGerman
+    \input{#1de/#2}
+    \else
+    \ifdefined\isEnglish
+    \input{#1en/#2}
+    \else
+    \input{#1de/#2}
+    \fi
+    \fi
+}
+
+\newcommand{\TRANS}[2]{
+    \ifdefined\isGerman
+    #1%
+    \else
+    \ifdefined\isEnglish
+    #2%
+    \else
+    #1%
+    \fi
+    \fi
+}
+
+
+% muss für Akronyme \ac statt see verwendet werden.
+\newcommand{\Siehe}{
+    \ifdefined\isGerman
+    \emph{siehe}
+    \else
+    \ifdefined\isEnglish
+    \emph{see}
+    \else
+    \emph{siehe}
+    \fi
+    \fi
+}
+
+
+%todo Die Kommandos sind für das Endprodukt zu entfernen. Die entsprechenden Stellen sind zu bearbeiten bzw. zu löschen
+\newcommand{\Mynote}[1]{\marginnote{\textcolor{red}{WS:#1}}}
+\newcommand{\Ausblenden}[1]{}
+\newcommand{\ToDo}[1]{\textcolor{red}{\section{ToDo} #1}}
+% Fehlerzähler
+\setul{0.5ex}{0.3ex}
+\setulcolor{red}
+\newcounter{fehlernummer}
+\setcounter{fehlernummer}{11}
+\newcommand{\FEHLER}[1]{\ul{#1}\stepcounter{fehlernummer}\textsuperscript{\textcolor{red}{\arabic{fehlernummer}}}}
+%\renewcommand{\FEHLER}[1]{\ul{#1}\stepcounter{fehlernummer}\marginnote{\textcolor{red}{\arabic{fehlernummer}}}} geht leider nicht
+%\renewcommand{\FEHLER}[1]{\ul{#1}\stepcounter{fehlernummer}\footnote{\textcolor{red}{\arabic{fehlernummer}.Fehler}}} geht leider nicht
+
+\graphicspath{{../Images}}
+
+
+
+\newcommand\pythonstyle{
+	\lstset{ 
+		backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+		basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+		breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+		breaklines=true,                 % sets automatic line breaking
+		captionpos=b,                    % sets the caption-position to bottom
+		commentstyle=\color{mygreen},    % comment style
+		deletekeywords={...},            % if you want to delete keywords from the given language
+		escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+		extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+		firstnumber=1000,                % start line enumeration with line 1000
+		frame=single,	                   % adds a frame around the code
+		keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+		keywordstyle=\color{blue},       % keyword style
+		language=Python,                 % the language of the code
+		morekeywords={*,...},            % if you want to add more keywords to the set
+		numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+		numbersep=5pt,                   % how far the line-numbers are from the code
+		numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+		rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+		showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+		showstringspaces=false,          % underline spaces within strings only
+		showtabs=false,                  % show tabs within strings adding particular underscores
+		stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+		stringstyle=\color{mymauve},     % string literal style
+		tabsize=2,	                     % sets default tabsize to 2 spaces
+		title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+	} 
+}
+
+\lstset{language=Python}
+
+% Python environment
+\lstnewenvironment{Python}[1][]
+{
+	\pythonstyle
+	\lstset{#1}
+}
+{}
+
+%Python for external files
+\newcommand\pythonexternal[2][]{{
+		\pythonstyle
+		\lstinputlisting[#1]{#2}}}
+
+\DeclareCaptionType{code}[Listing][\TRANS{Liste des Listings}{List of Listings}] 
+

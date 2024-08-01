@@ -1,0 +1,71 @@
+﻿@model RobotInterface.ViewModels.FunctionCommandLibrariesEditCreate
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">@ViewData["Title"]</h1>
+        <h4>Function</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-8">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                    <div class="form-group">
+                        <label asp-for="Function.FunctionName" class="control-label"></label>
+                        <input asp-for="Function.FunctionName" class="form-control" />
+                        <span asp-validation-for="Function.FunctionName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SelectedCommands" class="control-label">Commands</label>
+                        <select asp-for="SelectedCommands" asp-items="Model.CommandsList" multiple="multiple" class="form-control select2"></select>
+                        <span asp-validation-for="SelectedCommands" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SelectedLibraries" class="control-label">Libraries</label>
+                        <select asp-for="SelectedLibraries" asp-items="Model.LibrariesList" multiple="multiple" class="form-control select2"></select>
+                        <span asp-validation-for="SelectedLibraries" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SelectedCategoryId" class="control-label">Category</label>
+                        <select asp-for="SelectedCategoryId" asp-items="Model.CategoryList" class="form-control"></select>
+                        <span asp-validation-for="SelectedCategoryId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="mt-4">
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+
+    @section Scripts {
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-PLoBuETWt2XeNt6SAuD4CQkHiKZSoEE45XWmn1u/TYXIM0W3QeaFfbGoF0Ew4eNt" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('.select2').select2({
+                    placeholder: 'Select an option',
+                    allowClear: true
+                });
+            });
+        </script>
+    }
+</body>
+</html>

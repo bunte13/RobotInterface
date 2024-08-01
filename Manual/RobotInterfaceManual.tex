@@ -1,0 +1,219 @@
+%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2020-01-18 11:15:45Z $
+% $Version: 4620 $
+%
+%
+% !TeX encoding = utf8
+% !TeX root = CornerBlending
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%
+
+\documentclass[12pt,a4paper]{scrbook}
+
+% Auswahl der Sprache
+% Die nicht gewünschte Sprache muss auskommentiert werden:
+%\def\isGerman{1}
+\def\isEnglish{1}
+
+\usepackage{float} % Include the float package to use the H option
+\include{General/Packages}
+\include{General/commands}
+\include{General/tikzdefs}
+
+%\input{General/acronyms}
+%\input{General/Hyphenations}
+
+\addbibresource{../Documents/literature.bib}
+\addbibresource{../Documents/MyLiterature.bib}
+
+\begin{document}
+	
+	\InputLanguage{Chapters/}{Titlepage}
+	\newpage
+	
+	\pagenumbering{roman}
+	
+	\tableofcontents
+	\clearpage
+	
+	\addcontentsline{toc}{chapter}{\TRANS{Abbildungsverzeichnis}{List of figures}}
+	\listoffigures
+	\clearpage
+	
+	\addcontentsline{toc}{chapter}{\TRANS{Tabellenverzeichnis}{List of tables}}
+	\listoftables
+	\clearpage
+	
+	%\chapter*{\TRANS{Abkürzungen}{Acronyms}}
+	%\addcontentsline{toc}{chapter}{\TRANS{Abkürzungen}{Acronyms}}
+	
+	%\clearpage
+	
+	%\pagenumbering{arabic}
+	
+	\section{Introduction}
+	This user manual provides step-by-step instructions on how to use the Robot Interface application. The application allows you to interact with a robot by setting its IP address, verifying connectivity, and executing commands through a user-friendly web interface.
+	
+	\section{Getting Started}
+	
+	\subsection{Prerequisites}
+	Before using the application, ensure you have the following:
+	\begin{itemize}
+		\item The IP address of the robot you want to control.
+		\item Access to the web application.
+		\item A predefined Excel document (if you want to populate the database with predefined functions and commands).
+	\end{itemize}
+	
+	\subsection{Accessing the Application}
+	Open your web browser and navigate to the URL provided for the Robot Interface application.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=\linewidth]{Images/mainmenu.png}
+		\caption{Main Start Page (Functions Index Page)}
+		\label{}
+	\end{figure}
+	\section{Setting the Robot IP Address}
+	
+	\subsection{Navigate to Set IP Page}
+	1. On the main menu, click on "Set IP Address".\\
+	2. You will be redirected to the "Set Robot IP" page.\\
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=\linewidth]{Images/ipsetter.png}
+		\caption{IP Address Setup Page}
+		\label{}
+	\end{figure}
+	
+	\subsection{Enter the IP Address}
+	1. In the "IP Address" field, enter the IP address of the robot.\\
+	2. Click the "Submit" button.\\
+	3. A message will appear indicating whether the robot is reachable.\\
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=\linewidth]{Images/ipsetcor.png}
+		\caption{IP Address Setup Page}
+		\label{}
+	\end{figure}
+	
+	\section{Uploading Data from Excel}
+	
+	\subsection{Navigate to Upload Page}
+	1. On the main menu, click on "Upload File".\\
+	2. You will be redirected to the "Upload" page.\\
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=\linewidth]{Images/Databasesetter.png}
+		\caption{Database Upload Page}
+		\label{}
+	\end{figure}
+	
+	\subsection{Upload an Excel Document}
+	1. Click the "Choose File" button and select the Excel document from your computer.\\
+	2. Click the "Upload" button.\\
+	3. The application will parse the Excel document and populate the database with the predefined functions and commands.\\
+	\subsection{Reset Database}
+	1.Click the "Reset Database" button  to reset the contents of the database\\
+	2.The application will delete all the contents of the database and leave us with a blank database ready for populating with new data.
+	\section{Managing Functions}
+	
+	\subsection{View Functions}
+	1. On the main menu, click on "Functions".\\
+	2. You will be redirected to the "Functions" page, which lists all available functions.\\
+	3. You can view details, edit, delete, or execute each function.\\
+	
+	\subsection{Create a New Function}
+	1. On the "Functions" page, click on "Create New".\\
+	2. Fill in the required details for the new function, including selecting the associated commands and libraries.\\
+	3. Click the "Create" button to save the new function.\\
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=\linewidth]{Images/create.png}
+		\caption{Create Function Page}
+		\label{}
+	\end{figure}
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=\linewidth]{Images/aftercreate.png}
+		\caption{Functions Menu After Creating Function "Test1"}
+		\label{}
+	\end{figure}
+	
+	\subsection{Edit an Existing Function}
+	1. On the "Functions" page, click on the "Edit" link next to the function you want to modify.\\
+	2. Update the necessary details and click the "Save" button to apply the changes.\\
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=\linewidth]{Images/edit.png}
+		\caption{Editing of Function "Test1"}
+		\label{}
+	\end{figure}
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=\linewidth]{Images/afteredit.png}
+		\caption{Functions Menu After Edit on Function "Test1"}
+		\label{}
+	\end{figure}
+	\subsection{Delete a Function}
+	1. On the "Functions" page, click on the "Delete" link next to the function you want to remove.\\
+	2. Confirm the deletion when prompted.\\
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=\linewidth]{Images/delete.png}
+		\caption{Prompt to Delete the selected Function}
+		\label{}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=\linewidth]{Images/afterdelete.png}
+		\caption{Functions Menu After Deletion of Function "Test1\_mod"}
+		\label{}
+	\end{figure}
+	\subsection{Execute a Function}
+	1. On the "Functions" page, click on the "Execute" button next to the function you want to run.\\
+	2. The function will be executed on the robot, and you will see the output in real-time.\\
+	
+	\section{Real-time Communication}
+	
+	\subsection{Using SignalR}
+	The application uses SignalR for real-time communication between the client and server. This enables immediate feedback when executing commands on the robot.
+	
+	\subsection{Executing Commands from the Interface}
+	1. On the main menu, navigate to the page where you want to execute commands.\\
+	2. Enter the command or select the function to execute.\\
+	3. The command will be sent to the robot, and you will receive real-time responses via the SignalR hub.\\
+	
+	\section{Troubleshooting}
+	
+	\subsection{Common Issues}
+	1. \textbf{Robot not reachable:} Ensure the IP address is correct and the robot is powered on and connected to the network.\\
+	2. \textbf{Commands not executing:} Verify that the SSH connection is established and the Docker container is running.\\
+	
+	\section{Conclusion}
+	The Robot Interface application provides a straightforward and efficient way to interact with your robot. By following the steps outlined in this manual, you should be able to set up the robot, manage functions, and execute commands seamlessly.
+	
+	%\InputLanguage{Chapters/}{Hints}
+	
+	%%\InputLanguage{Chapters/}{Introduction}
+	%\InputLanguage{Chapters/}{Application}
+	%%\InputLanguage{Chapters/}{Database}
+	%%\InputLanguage{Chapters/}{IpAddressConnection}
+	%\InputLanguage{Chapters/}{Functions}
+	%\InputLanguage{Chapters/}{Maintenance}
+	%\InputLanguage{Chapters/}{SafetyGuidelines}
+	%\InputLanguage{Chapters/}{Troubleshooting}
+	%\InputLanguage{Chapters/}{AddOns}
+	
+	\cleardoublepage
+	\addcontentsline{toc}{chapter}{\TRANS{Literaturverzeichnis}{Bibliography}}
+	\printbibliography
+	
+	\cleardoublepage
+	
+	%\renewcommand{\indexname}{\TRANS{Stichwortverzeichnis}{Index}}
+	%\addcontentsline{toc}{chapter}{\TRANS{Stichwortverzeichnis}{Index}}
+	%\printindex
+	
+\end{document}

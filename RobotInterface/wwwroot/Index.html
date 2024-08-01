@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Robot Interface</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.18/signalr.min.js"></script>
+</head>
+<body>
+    <h1>Robot Interface</h1>
+    <div>
+        <input type="number" id="functionIdInput" placeholder="Enter Function ID">
+        <button onclick="sendCommand()">Execute Function</button>
+    </div>
+    <div id="responseContainer"></div>
+
+    <script>
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/robotHub")
+            .build();
+
+        connection.on("ReceiveResponse", (response) => {
+            const responseContainer = document.getElementById("responseContainer");
+            responseContainer.innerHTML += `<p>${response}</p>`;
+        });
+
+        connection.start().catch(err => console.error(err.toString()));
+
+        function sendCommand() {
+            const functionId = document.getElementById("functionIdInput").value;
+            connection.invoke("SendCommand", parseInt(functionId)).catch(err => console.error(err.toString()));
+        }
+    </script>
+</body>
+</html>

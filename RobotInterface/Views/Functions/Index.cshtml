@@ -1,0 +1,80 @@
+﻿@model IEnumerable<RobotInterface.Models.Function>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Index</h1>
+        <p>
+            <a asp-action="Create" class="btn btn-primary">Create New</a>
+        </p>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FunctionName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Category)
+                    </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FunctionName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Details</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                            <button onclick="executeFunction(@item.Id)" class="btn btn-sm btn-success">Execute</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div id="responseContainer" class="mt-4"></div>
+    </div>
+
+    @section Scripts {
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.18/signalr.min.js"></script>
+        <script>
+            const connection = new signalR.HubConnectionBuilder()
+                .withUrl("/robotHub")
+                .build();
+
+            connection.on("ReceiveResponse", (response) => {
+                const responseContainer = document.getElementById("responseContainer");
+                responseContainer.innerHTML += `<div class="alert alert-info">${response}</div>`;
+            });
+
+            connection.start().then(() => {
+                console.log("SignalR connection established.");
+            }).catch(err => console.error("SignalR connection error: " + err.toString()));
+
+            function executeFunction(functionId) {
+                console.log("Sending function ID: " + functionId);
+                connection.invoke("SendCommand", functionId).catch(err => console.error("SignalR invoke error: " + err.toString()));
+            }
+        </script>
+    }
+</body>
+</html>
